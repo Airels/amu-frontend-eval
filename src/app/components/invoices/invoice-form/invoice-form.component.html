@@ -1,21 +1,33 @@
 <div>
   <h2>Créer une facture</h2>
 
+  <a [routerLink]="['/', customerId]" class="btn btn-outline-primary mb-3">
+    <fa-icon [icon]="backIcon"></fa-icon>
+    Retour à la fiche client
+  </a>
+
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <div class="form-group">
       <label class="form-label">Montant de la facture</label>
-      <input name="amount" class="form-control" type="number" placeholder="Montant" formControlName="amount" required />
+      <input name="amount" class="form-control" type="number" placeholder="Montant" formControlName="amount" required [disabled]="loading" />
     </div>
 
     <div class="form-group">
       <label class="form-label">Statut de la facture :</label>
-      <select name="status" class="form-control" formControlName="status" required>
+      <select name="status" class="form-control" formControlName="status" required [disabled]="loading">
         <option *ngFor="let status of InvoiceStatus | keyvalue" [value]="status.key">
           {{ status.value }}
         </option>
       </select>
     </div>
 
-    <button class="btn btn-success" [disabled]="!form.valid">Enregistrer la facture</button>
+    <button class="btn btn-success mt-3" [disabled]="!form.valid || loading">
+      <fa-icon *ngIf="!loading; else loadingTemplate" [icon]="saveIcon"></fa-icon>
+      Enregistrer la facture
+    </button>
   </form>
 </div>
+
+<ng-template #loadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

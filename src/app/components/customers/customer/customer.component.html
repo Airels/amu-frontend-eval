@@ -1,4 +1,11 @@
-<div class="row" *ngIf="customer">
-  <label class="details-link col">{{ customer.fullName }}</label>
+<div class="row" *ngIf="customer && !header; else headerTemplate">
+  <span class="details-link col">{{ customer.fullName }}</span>
   <span class="details-link col">{{ customer.email }}</span>
 </div>
+
+<ng-template #headerTemplate>
+  <div class="row">
+    <span class="col fw-bold">Nom complet</span>
+    <span class="col fw-bold">E-Mail</span>
+  </div>
+</ng-template>

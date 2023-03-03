@@ -3,8 +3,9 @@ import Customer from "../../../models/customer.model";
 import { InvoiceService } from "../../../shared/services/invoice.service";
 import Invoice from "../../../models/invoice.model";
 import { ActivatedRoute } from "@angular/router";
-import { forkJoin, map, mergeMap, tap } from "rxjs";
+import { forkJoin, map, mergeMap } from "rxjs";
 import { CustomerService } from "../../../shared/services/customer.service";
+import { faPlus, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-customer-details',
@@ -12,6 +13,9 @@ import { CustomerService } from "../../../shared/services/customer.service";
   styleUrls: ['./customer-details.component.scss']
 })
 export class CustomerDetailsComponent implements OnInit {
+
+  public readonly plusIcon = faPlus;
+  public readonly backIcon = faArrowLeft;
 
   public customer?: Customer = undefined;
   public invoices?: Invoice[] = undefined;

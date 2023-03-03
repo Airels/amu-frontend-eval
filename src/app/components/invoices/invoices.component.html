@@ -1,5 +1,1 @@
-<app-invoice-form *ngIf="!loading; else loadingTemplate" (onSubmit)="createInvoice($event)"></app-invoice-form>
-
-<ng-template #loadingTemplate>
-  <app-loading></app-loading>
-</ng-template>
+<app-invoice-form [loading]="loading" (onSubmit)="createInvoice($event)"></app-invoice-form>

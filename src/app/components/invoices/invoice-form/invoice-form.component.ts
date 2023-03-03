@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Invoice from "../../../models/invoice.model";
 import InvoiceStatus from "../../../models/invoice-status.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { faArrowLeft, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-invoice-form',
@@ -11,9 +12,13 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class InvoiceFormComponent implements OnInit {
 
+  @Input() loading: boolean = false;
   @Output('onSubmit') submitEventEmitter = new EventEmitter<Invoice>();
 
-  private customerId?: number = undefined;
+  public readonly saveIcon = faFloppyDisk;
+  public readonly backIcon = faArrowLeft;
+
+  public customerId?: number = undefined;
 
   constructor(
     private readonly route: ActivatedRoute

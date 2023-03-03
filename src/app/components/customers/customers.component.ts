@@ -3,6 +3,7 @@ import { CustomerService } from "../../shared/services/customer.service";
 import Customer from "../../models/customer.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { mergeMap, of } from "rxjs";
+import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-customers',
@@ -10,6 +11,9 @@ import { mergeMap, of } from "rxjs";
   styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit {
+
+  public readonly plusIcon = faPlus;
+  public readonly backIcon = faArrowLeft;
 
   public customers: Customer[] = [];
   public customerCreation: boolean = false;
@@ -19,7 +23,7 @@ export class CustomersComponent implements OnInit {
     private readonly customerService: CustomerService,
     private readonly route: ActivatedRoute,
     private readonly router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.route.data.pipe(

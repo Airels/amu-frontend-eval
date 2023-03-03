@@ -18,6 +18,7 @@ import { CustomerComponent } from "./components/customers/customer/customer.comp
 import { InvoiceFormComponent } from './components/invoices/invoice-form/invoice-form.component';
 import { InvoicesComponent } from './components/invoices/invoices.component';
 import { InvoiceStatusStringPipe } from './shared/pipes/invoice-status-string.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -34,13 +35,14 @@ registerLocaleData(localeFr);
     InvoicesComponent,
     InvoiceStatusStringPipe
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        HttpClientModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }
   ],

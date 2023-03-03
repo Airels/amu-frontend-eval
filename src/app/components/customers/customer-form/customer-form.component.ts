@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import Customer from "../../../models/customer.model";
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-customer-form',
@@ -9,7 +10,10 @@ import Customer from "../../../models/customer.model";
 })
 export class CustomerFormComponent {
 
+  @Input() loading: boolean = false;
   @Output('onSubmit') submitEventEmitter = new EventEmitter<Customer>();
+
+  public readonly saveIcon = faFloppyDisk;
 
   public form = new FormGroup({
     fullName: new FormControl('', [ Validators.required ]),
@@ -25,8 +29,6 @@ export class CustomerFormComponent {
       customer.fullName?? '',
       customer.email?? ''
     ));
-
-    this.form.reset();
   }
 
 }

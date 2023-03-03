@@ -1,6 +1,7 @@
-<h2>Liste des clients</h2>
 <ng-container *ngIf="customers !== undefined && customers.length > 0; else noCustomers">
   <div class="list-group">
+    <app-customer class="list-group-item list-group-item-info" [header]="true"></app-customer>
+
     <app-customer
       *ngFor="let customer of customers"
       [customer]="customer"
@@ -11,5 +12,7 @@
 </ng-container>
 
 <ng-template #noCustomers>
-  <span>Aucun client enregistré</span>
+  <div>
+    <span class="text-info ms-4">Pas de clients enregistré</span>
+  </div>
 </ng-template>

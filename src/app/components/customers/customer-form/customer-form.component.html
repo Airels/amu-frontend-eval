@@ -2,16 +2,23 @@
   <h2>Créer un client</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <div class="form-group">
+    <div class="form-group mb-2">
       <label class="form-label">Nom complet</label>
-      <input name="fullName" class="form-control" type="text" placeholder="Nom complet" formControlName="fullName" required />
+      <input name="fullName" class="form-control" type="text" placeholder="Nom complet" formControlName="fullName" required [disabled]="loading" />
     </div>
 
     <div class="form-group">
       <label class="form-label">E-Mail</label>
-      <input name="email" class="form-control" type="email" placeholder="email" formControlName="email" required />
+      <input name="email" class="form-control" type="email" placeholder="email" formControlName="email" required [disabled]="loading" />
     </div>
 
-    <button class="btn btn-success">Enregistrer</button>
+    <button class="btn btn-success mt-2" [disabled]="!form.valid">
+      <fa-icon *ngIf="!loading; else loadingTemplate" [icon]="saveIcon"></fa-icon>
+      Enregistrer
+    </button>
   </form>
 </div>
+
+<ng-template #loadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

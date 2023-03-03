@@ -9,5 +9,6 @@ import Customer from "../../../models/customer.model";
 export class CustomerComponent {
 
   @Input() customer?: Customer = undefined;
+  @Input() header: boolean = false;
 
 }
