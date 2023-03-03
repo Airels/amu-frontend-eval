@@ -1,0 +1,14 @@
+<div *ngIf="!loading; else loadingTemplate">
+  <ng-container *ngIf="!customerCreation; else creationForm">
+    <a class="btn btn-outline-primary" routerLink="/create">Créer un client</a>
+    <app-customer-list [customers]="customers"></app-customer-list>
+  </ng-container>
+</div>
+
+<ng-template #creationForm>
+  <app-customer-form (onSubmit)="createCustomer($event)"></app-customer-form>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

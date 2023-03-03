@@ -1,0 +1,14 @@
+<div *ngIf="customer; else loading" class="flex-row">
+  <h1>Fiche de {{ customer.fullName }}</h1>
+  <h3>({{ customer.email }})</h3>
+
+  <a routerLink="/" class="btn btn-outline-primary">Retour aux clients</a>
+
+  <app-invoice-list *ngIf="invoices; else loading" [invoices]="invoices"></app-invoice-list>
+
+  <a class="btn btn-outline-primary" [routerLink]="['/', customer.id, 'invoices', 'add']">Créer une facture</a>
+</div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

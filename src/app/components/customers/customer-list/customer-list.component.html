@@ -1,0 +1,15 @@
+<h2>Liste des clients</h2>
+<ng-container *ngIf="customers !== undefined && customers.length > 0; else noCustomers">
+  <div class="list-group">
+    <app-customer
+      *ngFor="let customer of customers"
+      [customer]="customer"
+      class="list-group-item list-group-item-action details-link"
+      [routerLink]="['/', customer.id]"
+    ></app-customer>
+  </div>
+</ng-container>
+
+<ng-template #noCustomers>
+  <span>Aucun client enregistré</span>
+</ng-template>

@@ -1,0 +1,23 @@
+<table *ngIf="invoices; else loading" class="list-group">
+  <tr class="list-group-item">
+    <th>Montant</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let invoice of invoices; " class="list-group-item">
+    <td>
+      {{ invoice.amount }}
+    </td>
+    <td>
+      {{ invoice.status | invoiceStatusString }}
+    </td>
+  </tr>
+
+  <tr *ngIf="invoices.length === 0">
+    <td>Pas de factures</td>
+  </tr>
+</table>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
