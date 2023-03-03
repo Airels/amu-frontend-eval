@@ -4,44 +4,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomerListComponent } from './components/customers/customer-list/customer-list.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { CustomerFormComponent } from './components/customers/customer-form/customer-form.component';
-import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 import { HttpClientModule } from "@angular/common/http";
-import { InvoiceListComponent } from './components/invoices/invoice-list/invoice-list.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { ReactiveFormsModule } from "@angular/forms";
-import { LoadingComponent } from './shared/components/loading/loading.component';
+import { SharedModule } from "./shared/shared.module";
+import { CustomersComponent } from "./components/customers/customers.component";
 import { CustomerComponent } from "./components/customers/customer/customer.component";
-import { InvoiceFormComponent } from './components/invoices/invoice-form/invoice-form.component';
-import { InvoicesComponent } from './components/invoices/invoices.component';
-import { InvoiceStatusStringPipe } from './shared/pipes/invoice-status-string.pipe';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CustomerDetailsComponent } from "./components/customers/customer-details/customer-details.component";
+import { CustomerFormComponent } from "./components/customers/customer-form/customer-form.component";
+import { CustomerListComponent } from "./components/customers/customer-list/customer-list.component";
+import { InvoicesComponent } from "./components/invoices/invoices.component";
+import { InvoiceFormComponent } from "./components/invoices/invoice-form/invoice-form.component";
+import { InvoiceListComponent } from "./components/invoices/invoice-list/invoice-list.component";
 registerLocaleData(localeFr);
+
+const COMPONENTS = [
+  CustomersComponent,
+  CustomerComponent,
+  CustomerDetailsComponent,
+  CustomerFormComponent,
+  CustomerListComponent,
+
+  InvoicesComponent,
+  InvoiceFormComponent,
+  InvoiceListComponent
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent,
-    CustomerListComponent,
-    CustomersComponent,
-    CustomerFormComponent,
-    CustomerDetailsComponent,
-    InvoiceListComponent,
-    LoadingComponent,
-    InvoiceFormComponent,
-    InvoicesComponent,
-    InvoiceStatusStringPipe
+    ...COMPONENTS
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
+    SharedModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }
