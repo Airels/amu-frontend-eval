@@ -2,12 +2,12 @@
   <h2>Fiche de {{ customer.fullName }}</h2>
   <h5 class="ps-3">({{ customer.email }})</h5>
 
-  <a routerLink="/" class="btn btn-outline-primary mb-3">
+  <a id="backButton" routerLink="/" class="btn btn-outline-primary mb-3">
     <fa-icon [icon]="backIcon"></fa-icon>
     Retour aux clients
   </a>
   <app-invoice-list *ngIf="invoices; else loading" [invoices]="invoices"></app-invoice-list>
-  <a class="btn btn-outline-primary" [routerLink]="['/', customer.id, 'invoices', 'add']">
+  <a id="createButton" class="btn btn-outline-primary" [routerLink]="['/', customer.id, 'invoices', 'add']">
     <fa-icon [icon]="plusIcon"></fa-icon>
     Créer une facture
   </a>

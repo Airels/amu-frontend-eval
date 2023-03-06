@@ -1,6 +1,6 @@
 <div class="row" *ngIf="customer && !header; else headerTemplate">
-  <span class="details-link col">{{ customer.fullName }}</span>
-  <span class="details-link col">{{ customer.email }}</span>
+  <span id="fullname" class="details-link col">{{ customer.fullName }}</span>
+  <span id="email" class="details-link col">{{ customer.email }}</span>
 </div>
 
 <ng-template #headerTemplate>
