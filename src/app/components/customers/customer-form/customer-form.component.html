@@ -12,7 +12,7 @@
       <input name="email" class="form-control" type="email" placeholder="email" formControlName="email" required [disabled]="loading" />
     </div>
 
-    <button id="saveButton" class="btn btn-success mt-2" [disabled]="!form.valid">
+    <button class="btn btn-success mt-2" [disabled]="!form.valid">
       <fa-icon *ngIf="!loading; else loadingTemplate" [icon]="saveIcon"></fa-icon>
       Enregistrer
     </button>

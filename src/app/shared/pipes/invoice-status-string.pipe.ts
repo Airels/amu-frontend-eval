@@ -14,7 +14,7 @@ export class InvoiceStatusStringPipe implements PipeTransform {
       }
     }
 
-    return 'Statut inconnue';
+    return 'Statut inconnu';
   }
 
 }

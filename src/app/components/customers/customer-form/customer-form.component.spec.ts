@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CustomerFormComponent } from './customer-form.component';
 import { SharedModule } from "../../../shared/shared.module";
 import { By } from "@angular/platform-browser";
-import Customer from "../../../models/customer.model";
 import Spy = jasmine.Spy;
 
 describe('CustomerFormComponent', () => {
@@ -28,29 +27,45 @@ describe('CustomerFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit customer', async () => {
-    const fullnameInput = fixture.debugElement.query(By.css('[name=fullName]'));
-    const emailInput = fixture.debugElement.query(By.css('[name=email]'));
-    const saveButton = fixture.debugElement.query(By.css('#saveButton'));
-    let emitted: Customer = {};
+  it('should emit customer', () => {
+    const form = component.form;
+    const saveButton = fixture.debugElement.query(By.css('button'));
+    const formData = {
+      fullName: 'Jean Test',
+      email: 'jean.test@www.net'
+    };
 
-    component.submitEventEmitter.asObservable().subscribe(e => emitted = e);
+    expect(form.valid).toBeFalsy();
 
-    setFieldValue()
-
-    fullnameInput.nativeElement.value = 'Jean Test';
-    emailInput.nativeElement.value = 'jean.test@www.net';
-
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    saveButton.triggerEventHandler('click', {});
+    form.setValue(formData);
 
     fixture.detectChanges();
-    await fixture.whenStable();
+
+    expect(form.valid).toBeTruthy();
+
+    saveButton.nativeElement.click();
 
     expect(spyEventEmitterEmit).toHaveBeenCalled();
+
+    let emitted = spyEventEmitterEmit.calls.mostRecent().args[0];
+
     expect(emitted.fullName).toBe('Jean Test');
     expect(emitted.email).toBe('jean.test@www.net');
+  });
+
+  it('should button disabled if form invalid', () => {
+    const saveButton = fixture.debugElement.query(By.css('button'));
+    const formData = {
+      fullName: 'Jean Test',
+      email: 'jean.test@www.net'
+    };
+
+    expect(saveButton.nativeElement.disabled).toBeTruthy();
+
+    component.form.setValue(formData);
+
+    fixture.detectChanges();
+
+    expect(saveButton.nativeElement.disabled).toBeFalsy();
   })
 });
