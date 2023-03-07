@@ -67,5 +67,5 @@ describe('CustomerFormComponent', () => {
     fixture.detectChanges();
 
     expect(saveButton.nativeElement.disabled).toBeFalsy();
-  })
+  });
 });

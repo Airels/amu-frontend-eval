@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InvoicesComponent } from './invoices.component';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ActivatedRoute } from "@angular/router";
+import { RouterModule } from "@angular/router";
+import { InvoiceFormComponent } from "./invoice-form/invoice-form.component";
+import { SharedModule } from "../../shared/shared.module";
 
 describe('InvoicesComponent', () => {
   let component: InvoicesComponent;
@@ -12,9 +14,13 @@ describe('InvoicesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        ActivatedRoute
+        RouterModule.forRoot([]),
+        SharedModule
       ],
-      declarations: [ InvoicesComponent ]
+      declarations: [
+        InvoicesComponent,
+        InvoiceFormComponent
+      ]
     })
     .compileComponents();
 

@@ -14,6 +14,7 @@ describe('InvoiceStatusStringPipe', () => {
   it('should transform status element into text', () => {
     for (const entry of entries) {
       expect(pipe.transform(<InvoiceStatus>entry[0])).toBe(entry[1]);
+      expect(pipe.transform(<InvoiceStatus>entry[1])).toBe(entry[1]);
     }
   });
 });
