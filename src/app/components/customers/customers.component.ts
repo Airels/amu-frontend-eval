@@ -3,7 +3,8 @@ import { CustomerService } from "../../shared/services/customer.service";
 import Customer from "../../models/customer.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { mergeMap, of } from "rxjs";
-import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCircleCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { ToastService } from "../../shared/services/toast.service";
 
 @Component({
   selector: 'app-customers',
@@ -20,6 +21,7 @@ export class CustomersComponent implements OnInit {
   public loading: boolean = true;
 
   constructor(
+    private readonly toastService: ToastService,
     private readonly customerService: CustomerService,
     private readonly route: ActivatedRoute,
     private readonly router: Router
@@ -46,6 +48,7 @@ export class CustomersComponent implements OnInit {
 
     this.customerService.addCustomer(customer)
       .subscribe(() => {
+        this.toastService.showSuccess('Client crée avec succès');
         this.router.navigate(['/']);
       });
   }

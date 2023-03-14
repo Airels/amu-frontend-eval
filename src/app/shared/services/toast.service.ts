@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,14 @@ export class ToastService {
     const toast = { body, ...options };
     this.toasts.push(toast);
     return toast;
+  }
+
+  showSuccess(body: string, options: any = {}): any {
+    this.show(body, {
+      className: 'bg-success text-white',
+      icon: faCircleCheck,
+      ...options
+    })
   }
 
   remove(toast: any) {

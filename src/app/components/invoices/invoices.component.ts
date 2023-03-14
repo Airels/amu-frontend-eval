@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InvoiceService } from "../../shared/services/invoice.service";
 import Invoice from "../../models/invoice.model";
 import { Router } from "@angular/router";
+import { ToastService } from "../../shared/services/toast.service";
 
 @Component({
   selector: 'app-invoices',
@@ -13,6 +14,7 @@ export class InvoicesComponent {
   public loading = false;
 
   constructor(
+    private readonly toastService: ToastService,
     private readonly invoiceService: InvoiceService,
     private readonly router: Router
   ) { }
@@ -21,7 +23,10 @@ export class InvoicesComponent {
     this.loading = true;
 
     this.invoiceService.addInvoice(invoice)
-      .subscribe(() => this.router.navigate(['/', invoice.customer_id]));
+      .subscribe(() => {
+        this.toastService.showSuccess('Facture crée avec succès');
+        this.router.navigate(['/', invoice.customer_id]);
+      });
   }
 
 }
