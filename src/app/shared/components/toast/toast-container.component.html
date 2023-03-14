@@ -1,0 +1,12 @@
+<div *ngFor="let toast of getToasts()">
+  <ngb-toast
+    *ngIf="show"
+    class="toast-container position-fixed top-0 end-0 m-3"
+    [class]="toast.className"
+    [autohide]="true"
+    [animation]="true"
+    (hidden)="remove(toast)">
+    <fa-icon *ngIf="toast.icon" [icon]="toast.icon"></fa-icon>
+    {{ toast.body }}
+  </ngb-toast>
+</div>

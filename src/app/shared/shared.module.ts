@@ -5,6 +5,8 @@ import { LoadingComponent } from "./components/loading/loading.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ToastContainerComponent } from './components/toast/toast-container.component';
+import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
 
 const SHARED_MODULES = [
   FontAwesomeModule,
@@ -14,7 +16,8 @@ const SHARED_MODULES = [
 
 const DECLARATIONS = [
   LoadingComponent,
-  InvoiceStatusStringPipe
+  InvoiceStatusStringPipe,
+  ToastContainerComponent
 ];
 
 @NgModule({
@@ -22,7 +25,9 @@ const DECLARATIONS = [
     ...DECLARATIONS
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbToast,
+    ...SHARED_MODULES
   ],
   exports: [
     ...DECLARATIONS,
